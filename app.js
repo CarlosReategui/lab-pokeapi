@@ -37,8 +37,12 @@ app.get("/query", (req, res) => {
           abilities: filtered_abilities,
         });
       })
-      .catch((error) => res.send("Error al buscar el pokemon."));
+      .catch((error) => {
+        res.statusCode = 500;
+        res.send("Error al buscar el pokemon.");
+      });
   } catch (error) {
+    res.statusCode = 500;
     res.send("Error al buscar el pokemon.");
   }
 });
